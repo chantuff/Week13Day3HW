@@ -1,31 +1,31 @@
 const React = require("react");
+const myStyle = {
+  color: "#ffffff",
+  backgroundColor: "#f7d377",
+};
 
 class Index extends React.Component {
   render() {
-    const { pokemons } = this.props;
-    // const pokemons = this.props.pokemon;
+    const { pokemon } = this.props;
 
     return (
-      <div>
-        <h1>See All The Pokemon! </h1>
-        <nav>
-          <a href="/pokemons/new">Create a New Pokemon</a>
-        </nav>
+      <div style={myStyle}>
+        <h1>See All The Pokemon!</h1>
+        <a href="/pokemon/new" style={myStyle}>
+          Create new Pokemon
+        </a>
         <ul>
-          {pokemons.map((pokemon, i) => {
+          {pokemon.map((pokemon, i) => {
             return (
-              <li>
-                The <a href={`/pokemons/${pokemon._id}`}>{pokemon.name}</a> is{" "}
-                {pokemon.name} <br></br>
-                {pokemon.img}
-                <br />
-                <a href={`/pokemons/${pokemon._id}/edit`}> Edit This Pokemon </a>
-                <form
-                  action={`/pokemons/${pokemon._id}?_method=DELETE`}
-                  method="POST"
-                >
-                  <input type="submit" value="DELETE" />
-                </form>
+              <li key={i}>
+                <a href={`/pokemon/${pokemon._id}`} style={myStyle}>
+                  Name:
+                  <br />
+                  {pokemon.name}
+                  <br />
+                  Img: <br />
+                  <img src={pokemon.img} />
+                </a>
               </li>
             );
           })}
